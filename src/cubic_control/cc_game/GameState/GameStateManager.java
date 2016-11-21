@@ -25,6 +25,8 @@ public class GameStateManager {
 	public void init() {
 		System.out.println("[System]:Initializing GameStateManager");
 		states.peek().init();
+		
+		MenuState.audio.play();
 	}
 	
 }

@@ -2,10 +2,13 @@ package cubic_control.cc_game.Gen;
 
 import cubic_control.GameOperatingSystem.Vector2F;
 import cubic_control.GameOperatingSystem.loadImageFrom;
+import cubic_control.cc_game.GameStates.MenuState;
 import cubic_control.cc_game.Gen.Block;
 import cubic_control.cc_game.Gen.TileManager;
+import cubic_control.cc_game.Managers.AudioManager;
 import cubic_control.cc_game.Player.Player;
 import cubic_control.resources.assets.Assets;
+import cubic_control.resources.assets.sounds.AudioAssets;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -14,19 +17,26 @@ public class Map {
     TileManager tiles = new TileManager();
     Player player = new Player(this);
     private String mapName;
+    private String audioName;
+    
+    private AudioManager audio;
     
     public static Map instance;
     
-    public Map(String mapName){
+    public Map(String mapName, String audioName){
     	this.mapName = mapName;
+    	this.audioName = audioName;
     }
 
     public void init() {
     	System.out.println("[System]:Initializing Map");
         this.player.init();
         BufferedImage map = null;
+        MenuState.audio.stop();
         try {
             map = loadImageFrom.LoadImageFrom(Assets.class, (String)mapName);
+            audio = new AudioManager(AudioAssets.class, audioName);
+            audio.play();
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -71,6 +81,11 @@ public class Map {
                     }
                     case 6697728: {
                         TileManager.blocks.add(new Block(new Vector2F((float)(x * 48), (float)(y * 48)), Block.BlockType.OAK_LOG).isSolid(true));
+                        break;
+                    }
+                    case 1644825: {
+                    	TileManager.blocks.add(new Block(new Vector2F((float)(x * 48), (float)(y * 48)), Block.BlockType.DarkStone));
+                    	break;
                     }
                 }
                 ++y;

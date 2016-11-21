@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 @SuppressWarnings("serial")
 public class GameWindow extends JFrame{
 	boolean fse = false;
-	int fsm = 0;
+	int fsm;
 	GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
 	
 	public GameWindow(String title, int width, int height) {
@@ -16,7 +16,7 @@ public class GameWindow extends JFrame{
 		setSize(width, height);
 		this.setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setResizable(false);
+		setResizable(true);
 	}
 	
 	private void setfullscreen(){

@@ -2,6 +2,7 @@ package cubic_control.cc_game.GameStates;
 
 import java.awt.Graphics2D;
 
+import cubic_control.GameOperatingSystem.GameWindow;
 import cubic_control.cc_game.GameState.GameState;
 import cubic_control.cc_game.GameState.GameStateButton;
 import cubic_control.cc_game.GameState.GameStateManager;
@@ -18,6 +19,8 @@ public class SettingsState extends GameState {
 	Mousemanager mm;
 	
 	public static String fullscreenText = "";
+	
+	GameWindow window;
 	
 	private int WIDTH = Main.width / 4 - 100;
 
@@ -52,7 +55,9 @@ public class SettingsState extends GameState {
 			if(playerIDButton.isPressed()){
 				if(Player.playerID == 1){
 					Player.playerID = 2;
-				}else if(Player.playerID >= 2){
+				}else if(Player.playerID == 2){
+					Player.playerID = 3;
+				}else if(Player.playerID >= 3){
 					Player.playerID = 1;
 				}
 				GameStateManager.states.push(new SettingsState(gsm));
@@ -64,8 +69,10 @@ public class SettingsState extends GameState {
 			if(fullscreenButton.isPressed()){
 				if(Main.fsm == 0){
 					Main.fsm = 1;
+					//window.setFullscreen(1);
 				}else if(Main.fsm >= 1){
 					Main.fsm = 0;
+					//window.setFullscreen(0);
 				}
 				GameStateManager.states.push(new SettingsState(gsm));
 				GameStateManager.states.peek().init();

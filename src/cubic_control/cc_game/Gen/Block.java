@@ -48,6 +48,9 @@ public class Block extends Rectangle {
 		case SNOW:
 			block = Assets.snow;
 			break;
+		case DarkStone:
+			block = Assets.DarkStone;
+			break;
 		//Layer 2
 		case STONE_WALL:
 			block = Assets.Stone_Wall;
@@ -86,6 +89,7 @@ public class Block extends Rectangle {
 		GRASS_1,
 		OAK_PLANKS,
 		SNOW,
+		DarkStone,
 		//Layer 2
 		STONE_WALL,
 		WATER,

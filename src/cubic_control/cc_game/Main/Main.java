@@ -8,9 +8,8 @@ import java.awt.Toolkit;
 
 import cubic_control.GameOperatingSystem.GameWindow;
 import cubic_control.cc_game.GameLoop.GameLoop;
-import cubic_control.cc_game.Gen.Map;
+import cubic_control.cc_game.Managers.InputManager;
 import cubic_control.cc_game.Managers.Mousemanager;
-import cubic_control.cc_game.Player.Player;
 
 public class Main {
 	public static GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
@@ -22,7 +21,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		System.out.println("[System]:Initializing Game");
-		GameWindow frame = new GameWindow("CCMaze", width, height);
+		GameWindow frame = new GameWindow("CCMaze", 960, 720);
 		frame.setFullscreen(fsm);
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Cursor cursor = toolkit.createCustomCursor(toolkit.getImage(""), new Point(0, 0), "Cursor");
@@ -33,7 +32,7 @@ public class Main {
 		frame.addMouseWheelListener(new Mousemanager());
 		
 		frame.add(new GameLoop(width, height));
-		frame.addKeyListener(new Player(Map.instance));
+		frame.addKeyListener(new InputManager());
 		frame.setVisible(true);
 	}
 

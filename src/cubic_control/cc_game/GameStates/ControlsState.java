@@ -6,8 +6,8 @@ import cubic_control.cc_game.GameState.GameState;
 import cubic_control.cc_game.GameState.GameStateButton;
 import cubic_control.cc_game.GameState.GameStateManager;
 import cubic_control.cc_game.Main.Main;
+import cubic_control.cc_game.Managers.InputManager;
 import cubic_control.cc_game.Managers.Mousemanager;
-import cubic_control.cc_game.Player.Player;
 
 public class ControlsState extends GameState {
 	
@@ -31,13 +31,13 @@ public class ControlsState extends GameState {
 	public void init() {
 		System.out.println("[System]:Initializing ControlsState");
 		mm = new Mousemanager();
-		upButton = new GameStateButton(WIDTH, 100, "Up:" + Player.keyUP);
-		downButton = new GameStateButton(WIDTH, 200, "Down:" + Player.keyDOWN);
-		leftButton = new GameStateButton(WIDTH, 300, "Left:" + Player.keyLEFT);
-		rightButton = new GameStateButton(WIDTH, 400, "Right:" + Player.keyRIGHT);
-		sprintButton = new GameStateButton(WIDTH, 500, "Sprint:" + Player.keySPRINT);
-		exitButton = new GameStateButton(WIDTH, 600, "Exit:" + Player.keyEXIT);
-		screenshotButton = new GameStateButton(WIDTH, 700, "Screenshot:" + Player.keySCREENSHOT);
+		upButton = new GameStateButton(WIDTH, 100, "Up:" + InputManager.keyUP);
+		downButton = new GameStateButton(WIDTH, 200, "Down:" + InputManager.keyDOWN);
+		leftButton = new GameStateButton(WIDTH, 300, "Left:" + InputManager.keyLEFT);
+		rightButton = new GameStateButton(WIDTH, 400, "Right:" + InputManager.keyRIGHT);
+		sprintButton = new GameStateButton(WIDTH, 500, "Sprint:" + InputManager.keySPRINT);
+		exitButton = new GameStateButton(WIDTH, 600, "Exit:" + InputManager.keyEXIT);
+		screenshotButton = new GameStateButton(WIDTH, 700, "Screenshot:" + InputManager.keySCREENSHOT);
 		returnButton = new GameStateButton(WIDTH, 800, "Return to Menu");
 	}
 

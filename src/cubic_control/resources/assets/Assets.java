@@ -16,6 +16,7 @@ public class Assets {
 	public static BufferedImage grass_1;
 	public static BufferedImage oak_planks;
 	public static BufferedImage snow;
+	public static BufferedImage DarkStone;
 	//Layer 2
 	public static BufferedImage Stone_Wall;
 	public static BufferedImage water;
@@ -59,6 +60,11 @@ public class Assets {
 	public static BufferedImage spr_char2_walk_up2;
 	public static BufferedImage spr_char2_walk_up3;
 	public static BufferedImage spr_char2_walk_up4;
+			//Character 3
+	public static BufferedImage spr_char3_walk_up1;
+	public static BufferedImage spr_char3_walk_up2;
+	public static BufferedImage spr_char3_walk_up3;
+	public static BufferedImage spr_char3_walk_up4;
 		//Walking Down
 			//Character 1
 	public static BufferedImage spr_char1_walk_down1;
@@ -70,6 +76,11 @@ public class Assets {
 	public static BufferedImage spr_char2_walk_down2;
 	public static BufferedImage spr_char2_walk_down3;
 	public static BufferedImage spr_char2_walk_down4;
+			//Character 3
+	public static BufferedImage spr_char3_walk_down1;
+	public static BufferedImage spr_char3_walk_down2;
+	public static BufferedImage spr_char3_walk_down3;
+	public static BufferedImage spr_char3_walk_down4;
 		//Walking Left
 			//Character 1
 	public static BufferedImage spr_char1_walk_left1;
@@ -81,6 +92,11 @@ public class Assets {
 	public static BufferedImage spr_char2_walk_left2;
 	public static BufferedImage spr_char2_walk_left3;
 	public static BufferedImage spr_char2_walk_left4;
+			//Character 3
+	public static BufferedImage spr_char3_walk_left1;
+	public static BufferedImage spr_char3_walk_left2;
+	public static BufferedImage spr_char3_walk_left3;
+	public static BufferedImage spr_char3_walk_left4;
 		//Walking Right
 			//Character 1
 	public static BufferedImage spr_char1_walk_right1;
@@ -92,6 +108,11 @@ public class Assets {
 	public static BufferedImage spr_char2_walk_right2;
 	public static BufferedImage spr_char2_walk_right3;
 	public static BufferedImage spr_char2_walk_right4;
+			//Character 3
+	public static BufferedImage spr_char3_walk_right1;
+	public static BufferedImage spr_char3_walk_right2;
+	public static BufferedImage spr_char3_walk_right3;
+	public static BufferedImage spr_char3_walk_right4;
 	
 	public void init(){
 		System.out.println("[System]:Initializing Assets");
@@ -104,6 +125,7 @@ public class Assets {
 		grass_1 = blocks.getTile(32, 0, 16, 16);
 		oak_planks = blocks.getTile(48, 0, 16, 16);
 		snow = blocks.getTile(64, 0, 16, 16);
+		DarkStone = blocks.getTile(80, 0, 16, 16);
 		//Layer 2
 		Stone_Wall = blocks.getTile(0, 16, 16, 16);
 		water = blocks.getTile(16, 16, 16, 16);
@@ -147,6 +169,11 @@ public class Assets {
 		spr_char2_walk_up2 = Players.getTile(96, 32, 32, 32);
 		spr_char2_walk_up3 = Players.getTile(128, 32, 32, 32);
 		spr_char2_walk_up4 = spr_char2_walk_up2;
+				//Character 3
+		spr_char3_walk_up1 = Players.getTile(64, 64, 32, 32);
+		spr_char3_walk_up2 = Players.getTile(96, 64, 32, 32);
+		spr_char3_walk_up3 = Players.getTile(128, 64, 32, 32);
+		spr_char3_walk_up4 = spr_char3_walk_up2;
 			//Walking Down
 				//Character 1
 		spr_char1_walk_down1 = Players.getTile(160, 0, 32, 32);
@@ -158,6 +185,11 @@ public class Assets {
 		spr_char2_walk_down2 = Players.getTile(192, 32, 32, 32);
 		spr_char2_walk_down3 = Players.getTile(224, 32, 32, 32);
 		spr_char2_walk_down4 = spr_char2_walk_down2;
+				//Character 3
+		spr_char3_walk_down1 = Players.getTile(160, 64, 32, 32);
+		spr_char3_walk_down2 = Players.getTile(192, 64, 32, 32);
+		spr_char3_walk_down3 = Players.getTile(224, 64, 32, 32);
+		spr_char3_walk_down4 = spr_char3_walk_down2;
 			//Walking Left
 				//Character 1
 		spr_char1_walk_left1 = Players.getTile(256, 0, 32, 32);
@@ -169,6 +201,11 @@ public class Assets {
 		spr_char2_walk_left2 = Players.getTile(288, 32, 32, 32);
 		spr_char2_walk_left3 = Players.getTile(320, 32, 32, 32);
 		spr_char2_walk_left4 = spr_char2_walk_left2;
+				//Character 3
+		spr_char3_walk_left1 = Players.getTile(256, 64, 32, 32);
+		spr_char3_walk_left2 = Players.getTile(288, 64, 32, 32);
+		spr_char3_walk_left3 = Players.getTile(320, 64, 32, 32);
+		spr_char3_walk_left4 = spr_char3_walk_left2;
 			//Walking Right
 				//Character 1
 		spr_char1_walk_right1 = Players.getTile(352, 0, 32, 32);
@@ -180,5 +217,10 @@ public class Assets {
 		spr_char2_walk_right2 = Players.getTile(384, 32, 32, 32);
 		spr_char2_walk_right3 = Players.getTile(416, 32, 32, 32);
 		spr_char2_walk_right4 = spr_char2_walk_right2;
+				//Character 3
+		spr_char3_walk_right1 = Players.getTile(352, 64, 32, 32);
+		spr_char3_walk_right2 = Players.getTile(384, 64, 32, 32);
+		spr_char3_walk_right3 = Players.getTile(416, 64, 32, 32);
+		spr_char3_walk_right4 = spr_char3_walk_right2;
 	}
 }

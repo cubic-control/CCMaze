@@ -13,6 +13,9 @@ public class LevelSelectState extends GameState{
 	GameStateButton hubButton;
 	GameStateButton tutorialButton;
 	GameStateButton level1Button;
+	GameStateButton level2Button;
+	GameStateButton level3Button;
+	GameStateButton level4Button;
 	GameStateButton returnButton;
 	Mousemanager mm;
 	
@@ -29,7 +32,10 @@ public class LevelSelectState extends GameState{
 		hubButton = new GameStateButton(WIDTH, 100, new LevelLoader(gsm, "map"), gsm, "Play Hub");
 		tutorialButton = new GameStateButton(WIDTH, 200, new LevelLoader(gsm, "tutorial"), gsm, "Play Tutorial");
 		level1Button = new GameStateButton(WIDTH, 300, new LevelLoader(gsm, "level1"), gsm, "Play Level1");
-		returnButton = new GameStateButton(WIDTH, 500, "Return to Menu");
+		level2Button = new GameStateButton(WIDTH, 400, new LevelLoader(gsm, "level2"), gsm, "Play Level2");
+		level3Button = new GameStateButton(WIDTH, 500, new LevelLoader(gsm, "level3"), gsm, "Play Level3");
+		level4Button = new GameStateButton(WIDTH, 600, new LevelLoader(gsm, "level4"), gsm, "Play Level4");
+		returnButton = new GameStateButton(WIDTH, 700, "Return to Menu");
 	}
 
 	@Override
@@ -38,6 +44,9 @@ public class LevelSelectState extends GameState{
 		hubButton.tick();
 		tutorialButton.tick();
 		level1Button.tick();
+		level2Button.tick();
+		level3Button.tick();
+		level4Button.tick();
 		returnButton.tick();
 		
 		if(returnButton.isHeldOver()){
@@ -53,6 +62,9 @@ public class LevelSelectState extends GameState{
 		hubButton.render(g);
 		tutorialButton.render(g);
 		level1Button.render(g);
+		level2Button.render(g);
+		level3Button.render(g);
+		level4Button.render(g);
 		returnButton.render(g);
 		
 		mm.render(g);

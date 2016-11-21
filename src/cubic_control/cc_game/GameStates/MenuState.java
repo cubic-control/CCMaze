@@ -6,7 +6,9 @@ import cubic_control.cc_game.GameState.GameState;
 import cubic_control.cc_game.GameState.GameStateButton;
 import cubic_control.cc_game.GameState.GameStateManager;
 import cubic_control.cc_game.Main.Main;
+import cubic_control.cc_game.Managers.AudioManager;
 import cubic_control.cc_game.Managers.Mousemanager;
+import cubic_control.resources.assets.sounds.AudioAssets;
 
 public class MenuState extends GameState{
 
@@ -16,10 +18,13 @@ public class MenuState extends GameState{
 	GameStateButton quitButton;
 	Mousemanager mm;
 	
+	public static AudioManager audio;
+	
 	private int WIDTH = Main.width / 3 + 120;
 	
 	public MenuState(GameStateManager gsm) {
 		super(gsm);
+		audio = new AudioManager(AudioAssets.class, "menu.wav");
 	}
 
 	@Override

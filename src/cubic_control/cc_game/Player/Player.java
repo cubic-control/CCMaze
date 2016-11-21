@@ -5,29 +5,24 @@ import cubic_control.cc_game.Check.Check;
 import cubic_control.cc_game.GameLoop.GameLoop;
 import cubic_control.cc_game.Gen.Map;
 import cubic_control.cc_game.Main.Main;
+import cubic_control.cc_game.Managers.InputManager;
 import cubic_control.resources.assets.Animator;
 import cubic_control.resources.assets.Assets;
 
-import java.awt.AWTException;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.Robot;
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-
-public class Player implements KeyListener {
+public class Player{
     Vector2F pos;
     private int width = 42;
     private int height = 42;
-    private static boolean up,down,left,right;
-    private static boolean sprinting;
+    public static boolean up;
+	public static boolean down;
+	public static boolean left;
+	public static boolean right;
+    public static boolean sprinting;
     
     private float maxSpeed = 96.0f;
     private float speedUp = 0.0f;
@@ -40,13 +35,7 @@ public class Player implements KeyListener {
     
     public static int playerID = 1;
     
-    public static int keyUP = KeyEvent.VK_W;
-    public static int keyDOWN = KeyEvent.VK_S;
-    public static int keyLEFT = KeyEvent.VK_A;
-    public static int keyRIGHT = KeyEvent.VK_D;
-    public static int keySPRINT = KeyEvent.VK_SHIFT;
-    public static int keyEXIT = KeyEvent.VK_ESCAPE;
-    public static int keySCREENSHOT = KeyEvent.VK_F2;
+    
     
     private Animator playerIdle;
     private Animator playerWalkingUp;
@@ -65,22 +54,34 @@ public class Player implements KeyListener {
     
     private boolean mapMove = true;
 
+    
+    public Player(Map map, int x, int y, InputManager input, String username) {
+    	
+    }
+    
     public Player(Map map) {
-        this.pos = new Vector2F((float)(Main.width / 2 - this.width / 2), (float)(Main.height / 2 - this.height / 2));
         
-        if (Player.playerID == 1) {
+        this.pos = new Vector2F((float)(Main.width / 2 - this.width / 2), (float)(Main.height / 2 - this.height / 2));
+        if (Player.playerID == 0){
+        	Player.playerID = 1;
+        }else if (Player.playerID == 1) {
             this.playerIdle = new Animator(pIAS, new BufferedImage[]{Assets.spr_char1_idle1, Assets.spr_char1_idle2});
             this.playerWalkingUp = new Animator(pWAS, new BufferedImage[]{Assets.spr_char1_walk_up1, Assets.spr_char1_walk_up2, Assets.spr_char1_walk_up3, Assets.spr_char1_walk_up4});
             this.playerWalkingDown = new Animator(pWAS, new BufferedImage[]{Assets.spr_char1_walk_down1, Assets.spr_char1_walk_down2, Assets.spr_char1_walk_down3, Assets.spr_char1_walk_down4});
             this.playerWalkingLeft = new Animator(pWAS, new BufferedImage[]{Assets.spr_char1_walk_left1, Assets.spr_char1_walk_left2, Assets.spr_char1_walk_left3, Assets.spr_char1_walk_left4});
             this.playerWalkingRight = new Animator(pWAS, new BufferedImage[]{Assets.spr_char1_walk_right1, Assets.spr_char1_walk_right2, Assets.spr_char1_walk_right3, Assets.spr_char1_walk_right4});
-        }
-        if (Player.playerID == 2) {
+        }else if (Player.playerID == 2) {
             this.playerIdle = new Animator(pIAS, new BufferedImage[]{Assets.spr_char2_idle1, Assets.spr_char2_idle2});
             this.playerWalkingUp = new Animator(pWAS, new BufferedImage[]{Assets.spr_char2_walk_up1, Assets.spr_char2_walk_up2, Assets.spr_char2_walk_up3, Assets.spr_char2_walk_up4});
             this.playerWalkingDown = new Animator(pWAS, new BufferedImage[]{Assets.spr_char2_walk_down1, Assets.spr_char2_walk_down2, Assets.spr_char2_walk_down3, Assets.spr_char2_walk_down4});
             this.playerWalkingLeft = new Animator(pWAS, new BufferedImage[]{Assets.spr_char2_walk_left1, Assets.spr_char2_walk_left2, Assets.spr_char2_walk_left3, Assets.spr_char2_walk_left4});
             this.playerWalkingRight = new Animator(pWAS, new BufferedImage[]{Assets.spr_char2_walk_right1, Assets.spr_char2_walk_right2, Assets.spr_char2_walk_right3, Assets.spr_char2_walk_right4});
+        }else if (Player.playerID == 3) {
+            this.playerIdle = new Animator(pIAS, new BufferedImage[]{Assets.spr_char3_idle1, Assets.spr_char3_idle2});
+            this.playerWalkingUp = new Animator(pWAS, new BufferedImage[]{Assets.spr_char3_walk_up1, Assets.spr_char3_walk_up2, Assets.spr_char3_walk_up3, Assets.spr_char3_walk_up4});
+            this.playerWalkingDown = new Animator(pWAS, new BufferedImage[]{Assets.spr_char3_walk_down1, Assets.spr_char3_walk_down2, Assets.spr_char3_walk_down3, Assets.spr_char3_walk_down4});
+            this.playerWalkingLeft = new Animator(pWAS, new BufferedImage[]{Assets.spr_char3_walk_left1, Assets.spr_char3_walk_left2, Assets.spr_char3_walk_left3, Assets.spr_char3_walk_left4});
+            this.playerWalkingRight = new Animator(pWAS, new BufferedImage[]{Assets.spr_char3_walk_right1, Assets.spr_char3_walk_right2, Assets.spr_char3_walk_right3, Assets.spr_char3_walk_right4});
         }
     }
 
@@ -313,86 +314,26 @@ public class Player implements KeyListener {
     public void render(Graphics2D g) {
         if (up && !(down || left || right)) {
             this.playerWalkingUp.drawAnimation(g, (int)this.pos.xPos - this.width, (int)this.pos.yPos - this.height * 2, this.width * 3, this.height * 3);
-        }
-        if (down && !(up || left || right)) {
+        }else if (down && !(up || left || right)) {
             this.playerWalkingDown.drawAnimation(g, (int)this.pos.xPos - this.width, (int)this.pos.yPos - this.height * 2, this.width * 3, this.height * 3);
-        }
-        if (left && !right) {
+        }else if (left && !right) {
         	this.playerWalkingLeft.drawAnimation(g, (int)this.pos.xPos - this.width, (int)this.pos.yPos - this.height * 2, this.width * 3, this.height * 3);
-        }
-        if (right && !left) {
+        }else if (right && !left) {
         	this.playerWalkingRight.drawAnimation(g, (int)this.pos.xPos - this.width, (int)this.pos.yPos - this.height * 2, this.width * 3, this.height * 3);
-        }
-        if (!(up || down || left || right)) {
+        }else if (!(up || down || left || right)) {
             this.playerIdle.drawAnimation(g, (int)this.pos.xPos - this.width, (int)this.pos.yPos - this.height * 2, this.width * 3, this.height * 3);
-        }
-        if (right && left) {
+        }else if (right && left && !(up || down)) {
+        	this.playerIdle.drawAnimation(g, (int)this.pos.xPos - this.width, (int)this.pos.yPos - this.height * 2, this.width * 3, this.height * 3);
+        }else if (up && down && !(left || right)) {
         	this.playerIdle.drawAnimation(g, (int)this.pos.xPos - this.width, (int)this.pos.yPos - this.height * 2, this.width * 3, this.height * 3);
         }
-        if (up && down) {
-        	this.playerIdle.drawAnimation(g, (int)this.pos.xPos - this.width, (int)this.pos.yPos - this.height * 2, this.width * 3, this.height * 3);
-        }
     }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        int key = e.getKeyCode();
-        if (key == keyUP) {
-            up = true;
-        }
-        if (key == keyDOWN) {
-            down = true;
-        }
-        if (key == keyLEFT) {
-            left = true;
-        }
-        if (key == keyRIGHT) {
-            right = true;
-        }
-        if (key == keySPRINT) {
-            sprinting = true;
-        }
-        if (key == keyEXIT) {
-        	System.exit(1);
-        }
-        if (key == keySCREENSHOT) {
-        	try {
-                Robot robot = new Robot();
-                String format = "png";
-                String fileName = "Screenshot." + format;
-                 
-                Rectangle screenRect = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
-                BufferedImage screenFullImage = robot.createScreenCapture(screenRect);
-                ImageIO.write(screenFullImage, format, new File(fileName));
-                 
-                System.out.println("[System]:Screenshot Saved");
-            } catch (AWTException | IOException ex) {
-                System.err.println(ex);
-            }
-        }
+    
+    public float getX(){
+    	return pos.xPos;
     }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        int key = e.getKeyCode();
-        if (key == keyUP) {
-            up = false;
-        }
-        if (key == keyDOWN) {
-            down = false;
-        }
-        if (key == keyLEFT) {
-            left = false;
-        }
-        if (key == keyRIGHT) {
-            right = false;
-        }
-        if (key == keySPRINT) {
-            sprinting = false;
-        }
-    }
-
-    @Override
-    public void keyTyped(KeyEvent arg0) {
+    
+    public float getY(){
+    	return pos.yPos;
     }
 }
