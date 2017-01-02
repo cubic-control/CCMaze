@@ -18,7 +18,7 @@ public class GameLoop extends CCGameLoop {
 	
 	@Override
 	public void init() {
-		System.out.println("[System]:Initializing GameLoop");
+		System.out.println("[System][INFO]:Initializing GameLoop");
 		assets.init();
 		Vector2F.setWorldVaribles(map.xPos, map.yPos);
 		gsm = new GameStateManager();

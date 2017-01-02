@@ -1,41 +1,37 @@
 package cubic_control.cc_game.Gen;
 
-import cubic_control.GameOperatingSystem.Vector2F;
-import cubic_control.GameOperatingSystem.loadImageFrom;
-import cubic_control.cc_game.GameStates.MenuState;
-import cubic_control.cc_game.Gen.Block;
-import cubic_control.cc_game.Gen.TileManager;
-import cubic_control.cc_game.Managers.AudioManager;
-import cubic_control.cc_game.Player.Player;
-import cubic_control.resources.assets.Assets;
-import cubic_control.resources.assets.sounds.AudioAssets;
-
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import cubic_control.GameOperatingSystem.Vector2F;
+import cubic_control.GameOperatingSystem.loadImageFrom;
+import cubic_control.cc_game.Entity.EntityPlayer;
+import cubic_control.cc_game.GameState.GameStateManager;
+import cubic_control.cc_game.Managers.AudioManager;
+
 public class Map {
     TileManager tiles = new TileManager();
-    Player player = new Player(this);
+    EntityPlayer player = new EntityPlayer();
+    //EntityZombie zombie = new EntityZombie();
     private String mapName;
-    private String audioName;
-    
     private AudioManager audio;
     
     public static Map instance;
     
     public Map(String mapName, String audioName){
     	this.mapName = mapName;
-    	this.audioName = audioName;
+    	
+    	audio = new AudioManager(audioName, true);
     }
 
     public void init() {
     	System.out.println("[System]:Initializing Map");
         this.player.init();
+        //this.zombie.init();
+        GameStateManager.audio.stop();
         BufferedImage map = null;
-        MenuState.audio.stop();
         try {
-            map = loadImageFrom.LoadImageFrom(Assets.class, (String)mapName);
-            audio = new AudioManager(AudioAssets.class, audioName);
+            map = loadImageFrom.LoadImageFrom("/assets/textures/maps/" + (String)mapName);
             audio.play();
         }
         catch (Exception e) {
@@ -97,10 +93,12 @@ public class Map {
     public void tick(double deltaTime) {
         this.tiles.tick(deltaTime);
         this.player.tick(deltaTime);
+        //this.zombie.tick(deltaTime);
     }
 
     public void render(Graphics2D g) {
         this.tiles.render(g);
         this.player.render(g);
+        //this.zombie.render(g);
     }
 }

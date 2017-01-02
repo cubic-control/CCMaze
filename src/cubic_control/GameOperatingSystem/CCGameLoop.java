@@ -89,7 +89,7 @@ public class CCGameLoop extends JPanel implements Runnable{
 	}
 	
 	public void init() {
-		System.out.println("[System]:Initializing CCGameLoop");
+		System.out.println("[System][INFO]:Initializing CCGameLoop");
 		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		graphics2D = (Graphics2D) img.getGraphics();
 		running = true;

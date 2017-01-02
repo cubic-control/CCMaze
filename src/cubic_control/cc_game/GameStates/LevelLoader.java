@@ -12,21 +12,15 @@ extends GameState {
     private String levelName;
     private String audioName;
 
-    public LevelLoader(GameStateManager gsm, String levelName, String audioName) {
+    public LevelLoader(GameStateManager gsm, String levelName) {
         super(gsm);
         this.levelName = levelName;
-        this.audioName = audioName;
-    }
-    
-    public LevelLoader(GameStateManager gsm, String name) {
-        super(gsm);
-        this.levelName = name;
-        this.audioName = name;
+        this.audioName = levelName;
     }
 
     public void init() {
-        System.out.println("[System]:Initializing LevelLoader");
-        LevelLoader.map = new Map(levelName + ".png", audioName + ".wav");
+        System.out.println("[System][INFO]:Initializing LevelLoader");
+        LevelLoader.map = new Map(levelName + ".png", "/assets/sounds/music/" + audioName + ".wav");
         LevelLoader.map.init();
     }
 

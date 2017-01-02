@@ -20,7 +20,7 @@ public class QuitState extends GameState{
 
 	@Override
 	public void init() {
-		System.out.println("[System]:Initializing QuitState");
+		System.out.println("[System][INFO]:Initializing QuitState");
 		mm = new Mousemanager();
 		yes = new GameStateButton(Main.width / 3, 200, "Yes!");
 		no = new GameStateButton(Main.width / 3 + 200, 200, "No!");

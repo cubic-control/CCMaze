@@ -23,7 +23,7 @@ public class MultiplayerState extends GameState {
 
 	@Override
 	public void init() {
-		System.out.println("[System]:Initializing MultiplayerState");
+		System.out.println("[System][INFO]:Initializing MultiplayerState");
 		mm = new Mousemanager();
 		clientButton = new GameStateButton(WIDTH, 200, "Start LAN Server");
 		serverButton = new GameStateButton(WIDTH, 300, "Connect to Server");

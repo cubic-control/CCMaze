@@ -9,6 +9,9 @@ public class Assets {
 	SpriteSheet blocks = new SpriteSheet();
 	SpriteSheet Players = new SpriteSheet();
 	SpriteSheet GUI = new SpriteSheet();
+	SpriteSheet entities = new SpriteSheet();
+	
+	private String folderLocation = "/assets/textures/spritesheets/";
 	
 	//Layer 1
 	public static BufferedImage Stone;
@@ -113,12 +116,42 @@ public class Assets {
 	public static BufferedImage spr_char3_walk_right2;
 	public static BufferedImage spr_char3_walk_right3;
 	public static BufferedImage spr_char3_walk_right4;
+	//Entities
+		//Idle
+			//Zombie
+	public static BufferedImage spr_zomb_idle1;
+	public static BufferedImage spr_zomb_idle2;
+		//Walking Up
+			//Zombie
+	public static BufferedImage spr_zomb_walk_up1;
+	public static BufferedImage spr_zomb_walk_up2;
+	public static BufferedImage spr_zomb_walk_up3;
+	public static BufferedImage spr_zomb_walk_up4;
+		//Walking Down
+			//Zombie
+	public static BufferedImage spr_zomb_walk_down1;
+	public static BufferedImage spr_zomb_walk_down2;
+	public static BufferedImage spr_zomb_walk_down3;
+	public static BufferedImage spr_zomb_walk_down4;
+		//Walking Left
+			//Zombie
+	public static BufferedImage spr_zomb_walk_left1;
+	public static BufferedImage spr_zomb_walk_left2;
+	public static BufferedImage spr_zomb_walk_left3;
+	public static BufferedImage spr_zomb_walk_left4;
+		//Walking Right
+			//Zombie
+	public static BufferedImage spr_zomb_walk_right1;
+	public static BufferedImage spr_zomb_walk_right2;
+	public static BufferedImage spr_zomb_walk_right3;
+	public static BufferedImage spr_zomb_walk_right4;
 	
 	public void init(){
-		System.out.println("[System]:Initializing Assets");
-		blocks.setSpritesheet(loadImageFrom.LoadImageFrom(Assets.class, "blocks.png"));
-		Players.setSpritesheet(loadImageFrom.LoadImageFrom(Assets.class, "Players.png"));
-		GUI.setSpritesheet(loadImageFrom.LoadImageFrom(Assets.class, "GUI.png"));
+		System.out.println("[System][INFO]:Initializing Assets");
+		blocks.setSpritesheet(loadImageFrom.LoadImageFrom(folderLocation + "blocks.png"));
+		Players.setSpritesheet(loadImageFrom.LoadImageFrom(folderLocation + "Players.png"));
+		GUI.setSpritesheet(loadImageFrom.LoadImageFrom(folderLocation + "GUI.png"));
+		entities.setSpritesheet(loadImageFrom.LoadImageFrom(folderLocation + "entities.png"));
 		//Layer 1
 		Stone = blocks.getTile(0, 0, 16, 16);
 		dirt_1 = blocks.getTile(16, 0, 16, 16);
@@ -222,5 +255,34 @@ public class Assets {
 		spr_char3_walk_right2 = Players.getTile(384, 64, 32, 32);
 		spr_char3_walk_right3 = Players.getTile(416, 64, 32, 32);
 		spr_char3_walk_right4 = spr_char3_walk_right2;
+		//Entities
+			//Idle
+				//Zombie
+		spr_zomb_idle1 = entities.getTile(0, 0, 32, 32);
+		spr_zomb_idle2 = entities.getTile(32, 0, 32, 32);
+			//Walking Up
+				//Zombie
+		spr_zomb_walk_up1 = entities.getTile(64, 0, 32, 32);
+		spr_zomb_walk_up2 = entities.getTile(96, 0, 32, 32);
+		spr_zomb_walk_up3 = entities.getTile(128, 0, 32, 32);
+		spr_zomb_walk_up4 = spr_zomb_walk_up2;
+			//Walking Down
+				//Zombie
+		spr_zomb_walk_down1 = entities.getTile(160, 0, 32, 32);
+		spr_zomb_walk_down2 = entities.getTile(192, 0, 32, 32);
+		spr_zomb_walk_down3 = entities.getTile(224, 0, 32, 32);
+		spr_zomb_walk_down4 = spr_zomb_walk_down2;
+			//Walking Left
+				//Zombie
+		spr_zomb_walk_left1 = entities.getTile(256, 0, 32, 32);
+		spr_zomb_walk_left2 = entities.getTile(288, 0, 32, 32);
+		spr_zomb_walk_left3 = entities.getTile(320, 0, 32, 32);
+		spr_zomb_walk_left4 = spr_zomb_walk_left2;
+			//Walking Right
+				//Zombie
+		spr_zomb_walk_right1 = entities.getTile(352, 0, 32, 32);
+		spr_zomb_walk_right2 = entities.getTile(384, 0, 32, 32);
+		spr_zomb_walk_right3 = entities.getTile(416, 0, 32, 32);
+		spr_zomb_walk_right4 = spr_zomb_walk_right2;
 	}
 }

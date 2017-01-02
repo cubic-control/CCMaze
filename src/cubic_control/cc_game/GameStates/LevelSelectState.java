@@ -27,9 +27,9 @@ public class LevelSelectState extends GameState{
 
 	@Override
 	public void init() {
-		System.out.println("[System]:Initializing LevelSelectState");
+		System.out.println("[System][INFO]:Initializing LevelSelectState");
 		mm = new Mousemanager();
-		hubButton = new GameStateButton(WIDTH, 100, new LevelLoader(gsm, "map"), gsm, "Play Hub");
+		hubButton = new GameStateButton(WIDTH, 100, new LevelLoader(gsm, "hub"), gsm, "Play Hub");
 		tutorialButton = new GameStateButton(WIDTH, 200, new LevelLoader(gsm, "tutorial"), gsm, "Play Tutorial");
 		level1Button = new GameStateButton(WIDTH, 300, new LevelLoader(gsm, "level1"), gsm, "Play Level1");
 		level2Button = new GameStateButton(WIDTH, 400, new LevelLoader(gsm, "level2"), gsm, "Play Level2");

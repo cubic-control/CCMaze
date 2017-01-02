@@ -29,7 +29,7 @@ public class ControlsState extends GameState {
 
 	@Override
 	public void init() {
-		System.out.println("[System]:Initializing ControlsState");
+		System.out.println("[System][INFO]:Initializing ControlsState");
 		mm = new Mousemanager();
 		upButton = new GameStateButton(WIDTH, 100, "Up:" + InputManager.keyUP);
 		downButton = new GameStateButton(WIDTH, 200, "Down:" + InputManager.keyDOWN);

@@ -12,7 +12,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import cubic_control.cc_game.Player.Player;
+import cubic_control.cc_game.Entity.EntityPlayer;
 
 public class InputManager implements KeyListener {
 	
@@ -32,19 +32,19 @@ public class InputManager implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == keyUP) {
-            Player.up = true;
+            EntityPlayer.up = true;
         }
         if (key == keyDOWN) {
-        	Player.down = true;
+        	EntityPlayer.down = true;
         }
         if (key == keyLEFT) {
-        	Player.left = true;
+        	EntityPlayer.left = true;
         }
         if (key == keyRIGHT) {
-        	Player.right = true;
+        	EntityPlayer.right = true;
         }
         if (key == keySPRINT) {
-        	Player.sprinting = true;
+        	EntityPlayer.sprinting = true;
         }
         if (key == keyEXIT) {
         	System.exit(1);
@@ -70,19 +70,19 @@ public class InputManager implements KeyListener {
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == keyUP) {
-        	Player.up = false;
+        	EntityPlayer.up = false;
         }
         if (key == keyDOWN) {
-        	Player.down = false;
+        	EntityPlayer.down = false;
         }
         if (key == keyLEFT) {
-        	Player.left = false;
+        	EntityPlayer.left = false;
         }
         if (key == keyRIGHT) {
-        	Player.right = false;
+        	EntityPlayer.right = false;
         }
         if (key == keySPRINT) {
-        	Player.sprinting = false;
+        	EntityPlayer.sprinting = false;
         }
     }
 

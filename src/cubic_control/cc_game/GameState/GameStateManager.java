@@ -4,14 +4,18 @@ import java.awt.Graphics2D;
 import java.util.Stack;
 
 import cubic_control.cc_game.GameStates.MenuState;
+import cubic_control.cc_game.Managers.AudioManager;
 
 public class GameStateManager {
+	public static AudioManager audio;
 
 	public static Stack<GameState> states;
 	
 	public GameStateManager() {
 		states = new Stack<GameState>();
 		states.push(new MenuState(this));
+		
+		audio = new AudioManager("/assets/sounds/music/menu.wav", true);
 	}
 	
 	public void tick(double deltaTime){
@@ -23,10 +27,10 @@ public class GameStateManager {
 	}
 
 	public void init() {
-		System.out.println("[System]:Initializing GameStateManager");
+		System.out.println("[System][INFO]:Initializing GameStateManager");
 		states.peek().init();
 		
-		MenuState.audio.play();
+		audio.play();
 	}
 	
 }

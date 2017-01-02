@@ -2,10 +2,11 @@ package cubic_control.cc_game.Player;
 
 import java.net.InetAddress;
 
+import cubic_control.cc_game.Entity.EntityPlayer;
 import cubic_control.cc_game.Gen.Map;
 import cubic_control.cc_game.Managers.InputManager;
 
-public class PlayerMP extends Player {
+public class PlayerMP extends EntityPlayer {
 
     public InetAddress ipAddress;
     public int port;

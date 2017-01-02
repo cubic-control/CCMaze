@@ -19,5 +19,16 @@ public class loadImageFrom {
 		}
 		return img;
 	}
+	
+	public static BufferedImage LoadImageFrom(String path) {
+		BufferedImage img = null;
+		
+		try{
+			img = ImageIO.read(loadImageFrom.class.getResourceAsStream(path));
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		return img;
+	}
 
 }

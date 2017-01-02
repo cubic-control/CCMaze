@@ -7,18 +7,17 @@ import cubic_control.cc_game.GameState.GameState;
 import cubic_control.cc_game.GameState.GameStateButton;
 import cubic_control.cc_game.GameState.GameStateManager;
 import cubic_control.cc_game.Main.Main;
+import cubic_control.cc_game.Managers.AudioManager;
 import cubic_control.cc_game.Managers.Mousemanager;
-import cubic_control.cc_game.Player.Player;
 
 public class SettingsState extends GameState {
 	
 	GameStateButton playerIDButton;
 	GameStateButton fullscreenButton;
 	GameStateButton controlsButton;
+	GameStateButton muteButton;
 	GameStateButton returnButton;
 	Mousemanager mm;
-	
-	public static String fullscreenText = "";
 	
 	GameWindow window;
 	
@@ -26,20 +25,16 @@ public class SettingsState extends GameState {
 
 	public SettingsState(GameStateManager gsm) {
 		super(gsm);
-		if(Main.fsm == 0){
-			SettingsState.fullscreenText = "Fullscreen";
-		}else if(Main.fsm >= 1){
-			SettingsState.fullscreenText = "Windowed";
-		}
 	}
 
 	@Override
 	public void init() {
-		System.out.println("[System]:Initializing SettingsState");
+		System.out.println("[System][INFO]:Initializing SettingsState");
 		mm = new Mousemanager();
-		playerIDButton = new GameStateButton(WIDTH, 100, "PlayerID =" + Player.playerID);
-		fullscreenButton = new GameStateButton(WIDTH, 200, fullscreenText);
+		playerIDButton = new GameStateButton(WIDTH, 100, "PlayerID =" + Main.settings.playerID);
+		fullscreenButton = new GameStateButton(WIDTH, 200, "Fullscreen/Windowed");
 		controlsButton = new GameStateButton(WIDTH, 300, new ControlsState(gsm), gsm, "Controls");
+		muteButton = new GameStateButton(WIDTH, 400, "Mute Music");
 		returnButton = new GameStateButton(WIDTH, 500, "Return to Menu");
 	}
 
@@ -49,16 +44,17 @@ public class SettingsState extends GameState {
 		playerIDButton.tick();
 		fullscreenButton.tick();
 		controlsButton.tick();
+		muteButton.tick();
 		returnButton.tick();
 		
 		if(playerIDButton.isHeldOver()){
 			if(playerIDButton.isPressed()){
-				if(Player.playerID == 1){
-					Player.playerID = 2;
-				}else if(Player.playerID == 2){
-					Player.playerID = 3;
-				}else if(Player.playerID >= 3){
-					Player.playerID = 1;
+				if(Main.settings.playerID == 1){
+					Main.settings.playerID = 2;
+				}else if(Main.settings.playerID == 2){
+					Main.settings.playerID = 3;
+				}else if(Main.settings.playerID >= 3){
+					Main.settings.playerID = 1;
 				}
 				GameStateManager.states.push(new SettingsState(gsm));
 				GameStateManager.states.peek().init();
@@ -67,12 +63,21 @@ public class SettingsState extends GameState {
 		
 		if(fullscreenButton.isHeldOver()){
 			if(fullscreenButton.isPressed()){
-				if(Main.fsm == 0){
-					Main.fsm = 1;
-					//window.setFullscreen(1);
-				}else if(Main.fsm >= 1){
-					Main.fsm = 0;
-					//window.setFullscreen(0);
+				if(Main.settings.isFullscreen){
+					Main.settings.isFullscreen = false;
+				}else if(!Main.settings.isFullscreen){
+					Main.settings.isFullscreen = true;
+				}
+				GameStateManager.states.push(new SettingsState(gsm));
+				GameStateManager.states.peek().init();
+			}
+		}
+		
+		if(muteButton.isHeldOver()){
+			if(muteButton.isPressed()){
+				if(AudioManager.musicOn = true){
+					AudioManager.musicOn = false;
+					GameStateManager.audio.close();
 				}
 				GameStateManager.states.push(new SettingsState(gsm));
 				GameStateManager.states.peek().init();
@@ -92,6 +97,7 @@ public class SettingsState extends GameState {
 		playerIDButton.render(g);
 		fullscreenButton.render(g);
 		controlsButton.render(g);
+		muteButton.render(g);
 		returnButton.render(g);
 		mm.render(g);
 		g.clipRect(0, 0, Main.width, Main.height);

@@ -8,18 +8,18 @@ import javax.sound.sampled.Clip;
 public class AudioManager {
 	
 	private Clip clip;
+	private boolean doesLoop;
+	public static boolean musicOn = true;
 	
-	public AudioManager(Class<?> classfile, String path){
+	public AudioManager(String s, boolean b){
+		doesLoop = b;
 		try{
-			AudioInputStream AIS = AudioSystem.getAudioInputStream(classfile.getResource(path));
-			AudioFormat baseFormat = AIS.getFormat();
-			AudioFormat decodeFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 
-					baseFormat.getSampleRate(), 16, baseFormat.getChannels(), baseFormat.getChannels() * 2,
-					baseFormat.getSampleRate(), 
-					false);
-			AudioInputStream DAIS = AudioSystem.getAudioInputStream(decodeFormat, AIS);
+			AudioInputStream stream = AudioSystem.getAudioInputStream(getClass().getResource(s));
+			AudioFormat baseFormat = stream.getFormat();
+			AudioFormat decodeFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, baseFormat.getSampleRate(), 16, baseFormat.getChannels(), baseFormat.getChannels() * 2, baseFormat.getSampleRate(), false);
+			AudioInputStream dStream = AudioSystem.getAudioInputStream(decodeFormat, stream);
 			clip = AudioSystem.getClip();
-			clip.open(DAIS);
+			clip.open(dStream);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -28,10 +28,14 @@ public class AudioManager {
 	public void play(){
 		if(clip == null){
 			return;
-		}else{
-			stop();
+		}
+		stop();
+		if(musicOn){
 			clip.setFramePosition(0);
 			clip.start();
+			if(doesLoop){
+				loop();
+			}
 		}
 	}
 	
@@ -45,5 +49,8 @@ public class AudioManager {
 		stop();
 		clip.close();
 	}
-
+	
+	public void loop(){
+		clip.loop(500);
+	}
 }
