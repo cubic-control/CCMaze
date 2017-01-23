@@ -2,6 +2,7 @@ package cubic_control.resources.assets;
 
 import java.awt.image.BufferedImage;
 
+import net.cubic_control.CCMaze.Managers.TextureManager;
 import cubic_control.GameOperatingSystem.SpriteSheet;
 import cubic_control.GameOperatingSystem.loadImageFrom;
 
@@ -116,6 +117,12 @@ public class Assets {
 	public static BufferedImage spr_char3_walk_right2;
 	public static BufferedImage spr_char3_walk_right3;
 	public static BufferedImage spr_char3_walk_right4;
+		//AFK
+			//Character 1
+	public static BufferedImage spr_char1_afk1;
+	public static BufferedImage spr_char1_afk2;
+		//Character 0
+	public static BufferedImage spr_char0_idle1;
 	//Entities
 		//Idle
 			//Zombie
@@ -153,14 +160,14 @@ public class Assets {
 		GUI.setSpritesheet(loadImageFrom.LoadImageFrom(folderLocation + "GUI.png"));
 		entities.setSpritesheet(loadImageFrom.LoadImageFrom(folderLocation + "entities.png"));
 		//Layer 1
-		Stone = blocks.getTile(0, 0, 16, 16);
+		Stone = TextureManager.resourceLocation("blocks", "stone");
 		dirt_1 = blocks.getTile(16, 0, 16, 16);
 		grass_1 = blocks.getTile(32, 0, 16, 16);
 		oak_planks = blocks.getTile(48, 0, 16, 16);
 		snow = blocks.getTile(64, 0, 16, 16);
 		DarkStone = blocks.getTile(80, 0, 16, 16);
 		//Layer 2
-		Stone_Wall = blocks.getTile(0, 16, 16, 16);
+		Stone_Wall = TextureManager.resourceLocation("blocks", "stone_wall");
 		water = blocks.getTile(16, 16, 16, 16);
 		Stone_Bricks = blocks.getTile(32, 16, 16, 16);
 		Oak_Log = blocks.getTile(48, 16, 16, 16);
@@ -255,6 +262,12 @@ public class Assets {
 		spr_char3_walk_right2 = Players.getTile(384, 64, 32, 32);
 		spr_char3_walk_right3 = Players.getTile(416, 64, 32, 32);
 		spr_char3_walk_right4 = spr_char3_walk_right2;
+			//AFK
+				//Character 1
+		spr_char1_afk1 = Players.getTile(448, 0, 32, 32);
+		spr_char1_afk2 = Players.getTile(480, 0, 32, 32);
+			//Character 0
+		spr_char0_idle1 = Players.getTile(0, 192, 32, 32);
 		//Entities
 			//Idle
 				//Zombie

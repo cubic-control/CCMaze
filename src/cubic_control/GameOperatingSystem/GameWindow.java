@@ -22,15 +22,17 @@ public class GameWindow extends JFrame{
 	private void setfullscreen(){
 		switch(fsm){
 		case 0:
-			System.out.println("[System]:Fullscreen = False");
 			setUndecorated(false);
+			System.out.println("[System][INFO]:Windowed");
 			break;
 		case 1:
 			setUndecorated(true);
+			System.out.println("[System][INFO]:Windowed Borderless");
 			setExtendedState(JFrame.MAXIMIZED_BOTH);
 			break;
 		case 2:
 			setUndecorated(true);
+			System.out.println("[System][INFO]:Fullscreen");
 			device.setFullScreenWindow(this);
 			break;
 		}
